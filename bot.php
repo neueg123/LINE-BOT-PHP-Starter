@@ -35,15 +35,20 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
 
 //เพิ่มตรงนี้ 
 
-else if($text_ex[0] == "อากาศ"){
-$arrPostData = array();    
-$arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+else if($text_ex[0] == "อากาศ"){//ถ้าพิมพ์มาว่า อากาศ ก็ให้ไปดึง API จาก wunderground มา
+//http://api.wunderground.com/api/yourkey/forecast/lang:TH/q/Thailand/%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3.json
 $ch1 = curl_init();
 curl_setopt($ch1, CURLOPT_SSL_VERIFYPEER, false);
 curl_setopt($ch1, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch1, CURLOPT_URL, 'http://api.wunderground.com/api/yourkey/forecast/lang:TH/q/Thailand/'.str_replace(' ', '%20', $text_ex[1]).'.json');
 $result1 = curl_exec($ch1);
 curl_close($ch1);
+            
+$obj = json_decode($result1, true);
+if(isset($obj['forecast']['txt_forecast']['forecastday'][0]['fcttext_metric'])){
+$result_text = $obj['forecast']['txt_forecast']['forecastday'][0]['fcttext_metric'];
+}else{//ถ้าไม่เจอกับตอบกลับว่าไม่พบข้อมูล
+ $result_text = 'ไม่พบข้อมูล';
 }
 
 //สุดตรงนี้
