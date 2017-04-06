@@ -20,47 +20,47 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
-  $arrPostData['messages'][0]['text'] = "Barret Bot ครับ";
+  $arrPostData['messages'][0]['text'] = "Barret Bot ครับเจ้านาย";
 }else if($arrJson['events'][0]['message']['text'] == "ทำอะไรได้บ้าง"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "ฉันทำอะไรไม่ได้เลย กำลังพัฒนาอยู่จ้า";
-}else if($arrJson['events'][0]['message']['text'] == "ID ของฉัน"){
+}else if($arrJson['events'][0]['message']['text'] == "ID ของเรา"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "ID คุณคือ ".$arrJson['events'][0]['source']['userId'];
 }
 
-//เพิ่มตรงนี้ 
-else if($arrJson['events'][0]['message']['text'] == "วันจันทร์ เรียนอะไรบ้าง"){
+//ตารางเรียน เพิ่มตรงนี้ 
+else if($arrJson['events'][0]['message']['text'] == "วันจันทร์เรียนอะไรบ้าง"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "ตอนบ่าย4 โมงเย็น เรียนสถิติเบื้องต้น ที่ตึกวิทย ชั้น9 ห้องST1901";
-}else if($arrJson['events'][0]['message']['text'] == "วันอังคาร เรียนอะไรบ้าง"){
+}else if($arrJson['events'][0]['message']['text'] == "วันอังคารเรียนอะไรบ้าง"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "ตอนเช้า 9 โมง เรียนจิตวิทยาการศึกษาและการแนะแนว ที่คณะ ชั้น4 ห้องคอบ1409";
-}else if($arrJson['events'][0]['message']['text'] == "วันพุธ เรียนอะไรบ้าง"){
+}else if($arrJson['events'][0]['message']['text'] == "วันพุธเรียนอะไรบ้าง"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "ตอนบ่ายโมง เรียนการวิเคราะห์และออกแบบระบบ ที่คณะ ชั้น6 ห้องคอบ1613";
-}else if($arrJson['events'][0]['message']['text'] == "วันพฤหัส เรียนอะไรบ้าง"){
+}else if($arrJson['events'][0]['message']['text'] == "วันพฤหัสเรียนอะไรบ้าง"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "ว่าง วู้ฮู้วว ไปนอน 555+";
-}else if($arrJson['events'][0]['message']['text'] == "วันศุกร์ เรียนอะไรบ้าง"){
+}else if($arrJson['events'][0]['message']['text'] == "วันศุกร์เรียนอะไรบ้าง"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "ตอนเช้า 9 โมง เรียนคอมพิวเตอร์เพื่อการศึกษาและการฝึกอบรม ที่คณะ ชั้น6 ห้องคอบ1616";
 }
-//สุดตรงนี้
+//ตารางเรียน สุดตรงนี้
 
 else{
   $arrPostData = array();
