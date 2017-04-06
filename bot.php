@@ -10,7 +10,20 @@ $strUrl = "https://api.line.me/v2/bot/message/reply";
 $arrHeader = array();
 $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
- 
+
+                if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
+                    $this->isText = true;
+                    $this->text   = $event['message']['text'];
+                }
+				
+                if ($event['type'] == 'message' && $event['message']['type'] == 'image') {
+                    $this->isImage = true;
+                }
+				
+                if ($event['type'] == 'message' && $event['message']['type'] == 'sticker') {
+                    $this->isSticker = true;
+                }
+
 if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
