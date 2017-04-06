@@ -81,7 +81,7 @@ else{
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
-  $arrPostData['messages'][0]['text'] = 'text';
+  $arrPostData['messages'][0]['text'] = " ".$arrJson['messages'][0]['type']['text'];
 }
  
 $ch = curl_init();
