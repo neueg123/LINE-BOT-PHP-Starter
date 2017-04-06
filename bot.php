@@ -81,7 +81,8 @@ else{
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
-  $arrPostData['messages'][0]['text'] = " ".$arrJson['messages'][0]['type']['text'];
+  $arrPostData['messages'][0]['text'] = "ว่าง วู้ฮู้วว ไปนอน 555+";
+  $response = $bot->replyText('<reply token>', 'hello!');
 }
  
 $ch = curl_init();
