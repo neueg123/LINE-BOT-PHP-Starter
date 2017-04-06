@@ -34,13 +34,6 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
 }
 
 //เพิ่มตรงนี้ 
-else if($arrJson['events'][0]['message']['text'] => 'text'){
-  $arrPostData = array();
-  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-  $arrPostData['messages'][0]['type'] = "text";
-  $arrPostData['messages'][0]['text'] = $text
-}
-
 
 //สุดตรงนี้
 else{
