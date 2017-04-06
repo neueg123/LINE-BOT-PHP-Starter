@@ -34,23 +34,32 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
 }
 
 //เพิ่มตรงนี้ 
-
-else if($text_ex[0] == "อากาศ"){//ถ้าพิมพ์มาว่า อากาศ ก็ให้ไปดึง API จาก wunderground มา
-//http://api.wunderground.com/api/yourkey/forecast/lang:TH/q/Thailand/%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3.json
-$ch1 = curl_init();
-curl_setopt($ch1, CURLOPT_SSL_VERIFYPEER, false);
-curl_setopt($ch1, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch1, CURLOPT_URL, 'http://api.wunderground.com/api/yourkey/forecast/lang:TH/q/Thailand/'.str_replace(' ', '%20', $text_ex[1]).'.json');
-$result1 = curl_exec($ch1);
-curl_close($ch1);
-            
-$obj = json_decode($result1, true);
-if(isset($obj['forecast']['txt_forecast']['forecastday'][0]['fcttext_metric'])){
-$result_text = $obj['forecast']['txt_forecast']['forecastday'][0]['fcttext_metric'];
-}else{//ถ้าไม่เจอกับตอบกลับว่าไม่พบข้อมูล
- $result_text = 'ไม่พบข้อมูล';
+else if($arrJson['events'][0]['message']['text'] == "วันจันทร์ เรียนอะไรบ้าง"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "ตอนบ่าย4 โมงเย็น เรียนสถิติเบื้องต้น ที่ตึกวิทย ชั้น9 ห้องST1901";
+}else if($arrJson['events'][0]['message']['text'] == "วันอังคาร เรียนอะไรบ้าง"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "ตอนเช้า 9 โมง เรียนจิตวิทยาการศึกษาและการแนะแนว ที่คณะ ชั้น4 ห้องคอบ1409";
+}else if($arrJson['events'][0]['message']['text'] == "วันพุธ เรียนอะไรบ้าง"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "ตอนบ่ายโมง เรียนการวิเคราะห์และออกแบบระบบ ที่คณะ ชั้น6 ห้องคอบ1613";
+}else if($arrJson['events'][0]['message']['text'] == "วันพฤหัส เรียนอะไรบ้าง"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "ว่าง วู้ฮู้วว ไปนอน 555+";
+}else if($arrJson['events'][0]['message']['text'] == "วันคุกร์ เรียนอะไรบ้าง"){
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "ตอนเช้า 9 โมง เรียนคอมพิวเตอร์เพื่อการศึกษาและการฝึกอบรม ที่คณะ ชั้น6 ห้องคอบ1616";
 }
-
 //สุดตรงนี้
 
 else{
