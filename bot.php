@@ -35,7 +35,19 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
 
 //เพิ่มตรงนี้ 
 
+else if($text_ex[0] == "อากาศ"){
+$arrPostData = array();    
+$arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+$ch1 = curl_init();
+curl_setopt($ch1, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch1, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch1, CURLOPT_URL, 'http://api.wunderground.com/api/yourkey/forecast/lang:TH/q/Thailand/'.str_replace(' ', '%20', $text_ex[1]).'.json');
+$result1 = curl_exec($ch1);
+curl_close($ch1);
+}
+
 //สุดตรงนี้
+
 else{
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
