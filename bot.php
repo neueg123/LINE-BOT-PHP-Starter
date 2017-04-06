@@ -11,19 +11,6 @@ $arrHeader = array();
 $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
 
-                if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
-                    $this->isText = true;
-                    $this->text   = $event['message']['text'];
-                }
-				
-                if ($event['type'] == 'message' && $event['message']['type'] == 'image') {
-                    $this->isImage = true;
-                }
-				
-                if ($event['type'] == 'message' && $event['message']['type'] == 'sticker') {
-                    $this->isSticker = true;
-                }
-
 if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
@@ -39,9 +26,13 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "ฉันทำอะไรไม่ได้เลย คุณต้องสอนฉันอีกเยอะ";
-}else if($arrJson['events'][0]['message']['text'] => "text"){
+}else if($arrJson['events'][0]['message']['type'] => "text"){
   $arrPostData["text"] => $text
-{else if($arrJson['events'][0]['message']['text'] == "ID ของฉัน"){
+}else if($arrJson['events'][0]['message']['type'] => "image"){
+  $arrPostData["image"] => $image
+}else if($arrJson['events'][0]['message']['type'] => "sticker"){
+  $arrPostData["sticker"] => $sticker
+}else if($arrJson['events'][0]['message']['text'] == "ID ของฉัน"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
