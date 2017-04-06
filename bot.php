@@ -54,7 +54,7 @@ else if($arrJson['events'][0]['message']['text'] == "วันจันทร์
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "ว่าง วู้ฮู้วว ไปนอน 555+";
-}else if($arrJson['events'][0]['message']['text'] == "วันคุกร์ เรียนอะไรบ้าง"){
+}else if($arrJson['events'][0]['message']['text'] == "วันศุกร์ เรียนอะไรบ้าง"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
