@@ -78,10 +78,23 @@ else if($arrJson['events'][0]['message']['text'] == "วันศุกร์เ
 //ตารางเรียน สุดตรงนี้
 
 else{
-  $arrPostData = array();
-  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-  $arrPostData['messages'][0]['type'] = "text";
-  $arrPostData['messages'][0]['text'] = "ผมไม่เข้าใจคำสั่ง";
+
+ if (!is_null($events['events'])) {
+	foreach ($events['events'] as $event) {
+		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
+			$text = $event['message']['text'];
+			$replyToken = $event['replyToken'];
+			$messages = [
+				'type' => 'text',
+				'text' => $text
+			];
+			$url = 'https://api.line.me/v2/bot/message/reply';
+			$data = [
+				'replyToken' => $replyToken,
+				'messages' => [$messages],
+			];
+			$post = json_encode($data);
+			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 }
  
  
