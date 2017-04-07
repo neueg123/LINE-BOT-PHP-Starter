@@ -11,6 +11,46 @@ $arrHeader = array();
 $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
 
+//---------------------------------------------------------------
+$text_ex = explode(':', $text); //เอาข้อความมาแยก : ได้เป็น Array
+        
+        if($text_ex[0] == "อยากรู้"){ //ถ้าข้อความคือ "อยากรู้" ให้ทำการดึงข้อมูลจาก Wikipedia หาจากไทยก่อน
+            //https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=PHP
+            $ch1 = curl_init();
+            curl_setopt($ch1, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch1, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch1, CURLOPT_URL, 'https://th.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles='.$text_ex[1]);
+            $result1 = curl_exec($ch1);
+            curl_close($ch1);
+            
+            $obj = json_decode($result1, true);
+            
+            foreach($obj['query']['pages'] as $key => $val){
+
+                $result_text = $val['extract'];
+            }
+            
+            if(empty($result_text)){//ถ้าไม่พบให้หาจาก en
+                $ch1 = curl_init();
+                curl_setopt($ch1, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($ch1, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch1, CURLOPT_URL, 'https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles='.$text_ex[1]);
+                $result1 = curl_exec($ch1);
+                curl_close($ch1);
+                
+                $obj = json_decode($result1, true);
+                
+                foreach($obj['query']['pages'] as $key => $val){
+                
+                    $result_text = $val['extract'];
+                }
+            }
+            if(empty($result_text)){//หาจาก en ไม่พบก็บอกว่า ไม่พบข้อมูล ตอบกลับไป
+                $result_text = 'ไม่พบข้อมูล';
+            }
+            $response_format_text = ['contentType'=>1,"toType"=>1,"text"=>$result_text];
+//---------------------------------------------------------------
+
 
 if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData = array();
@@ -22,11 +62,6 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "Barret Bot ครับเจ้านาย";
-}else if($arrJson['events'][0]['message']['text'] == "ทำอะไรได้บ้าง"){
-  $arrPostData = array();
-  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-  $arrPostData['messages'][0]['type'] = "text";
-  $arrPostData['messages'][0]['text'] = "ฉันทำอะไรไม่ได้เลย กำลังพัฒนาอยู่จ้า";
 }else if($arrJson['events'][0]['message']['text'] == "ID ของเรา"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
@@ -82,12 +117,6 @@ else{
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "ยังไม่สามารถเรียนรู้คำนี้";
-{
-  "type": "sticker",
-  "packageId": "1",
-  "stickerId": "1"
-}
-
 }
 
 $ch = curl_init($url);
