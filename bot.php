@@ -82,6 +82,12 @@ else{
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "ยังไม่สามารถเรียนรู้คำนี้";
+{
+  "type": "sticker",
+  "packageId": "1",
+  "stickerId": "1"
+}
+
 }
 
 $ch = curl_init($url);
