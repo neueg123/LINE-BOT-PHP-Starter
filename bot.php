@@ -11,11 +11,6 @@ $arrHeader = array();
 $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
 
-{
-    "type": "image",
-    "originalContentUrl": "https://example.com/original.jpg",
-    "previewImageUrl": "https://example.com/preview.jpg"
-}
 
 if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData = array();
@@ -80,17 +75,13 @@ else if($arrJson['events'][0]['message']['text'] == "วันศุกร์เ
   $arrPostData['messages'][0]['text'] = "ตอนเช้า 9 โมง เรียนคอมพิวเตอร์เพื่อการศึกษาและการฝึกอบรม ที่คณะ ชั้น6 ห้องคอบ1616";
 }
 
-
 //ตารางเรียน สุดตรงนี้
-//ค้นคำ
-//ค้นคำ
 
 else{
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
   $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "ยังไม่สามารถเรียนรู้คำนี้";
-
 }
 
 $ch = curl_init($url);
