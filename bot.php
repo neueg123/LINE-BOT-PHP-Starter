@@ -77,20 +77,6 @@ else if($arrJson['events'][0]['message']['text'] == "วันศุกร์เ
 
 //ตารางเรียน สุดตรงนี้
 //ค้นคำ
-else if($text_ex[0] == "อยากรู้"){ 
-$ch1 = curl_init();
-curl_setopt($ch1, CURLOPT_SSL_VERIFYPEER, false);
-curl_setopt($ch1, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch1, CURLOPT_URL, 'https://th.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles='.$text_ex[1]);
-$result1 = curl_exec($ch1);
-curl_close($ch1);
-            
-$obj = json_decode($result1, true);
-            
-foreach($obj['query']['pages'] as $key => $val){
-
-$result_text = $val['extract'];
-}
 //ค้นคำ
 
 else{
@@ -100,14 +86,6 @@ else{
   $arrPostData['messages'][0]['text'] = "ยังไม่สามารถเรียนรู้คำนี้";
 
 }
-
-$url = 'https://api.line.me/v2/bot/message/reply';
-			$data = [
-				'replyToken' => $replyToken,
-				'messages' => [$messages],
-			];
-			$post = json_encode($data);
-			$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_URL,$strUrl);
