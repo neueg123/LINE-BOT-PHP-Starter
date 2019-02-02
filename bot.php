@@ -10,27 +10,19 @@ $strUrl = "https://api.line.me/v2/bot/message/reply";
 $arrHeader = array();
 $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
-$TEACH_SIGN = '==';
-$text = $this->textMessage->getText();
-$text = trim($text);
-# Remove ZWSP
-$text = str_replace("\xE2\x80\x8B", "", $text);
-$replyToken = $this->textMessage->getReplyToken();
+
 
 if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-  $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "สวัสดีครับเจ้านาย";
 }else if($arrJson['events'][0]['message']['text'] == "ชื่ออะไร"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-  $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "Barret Bot ครับเจ้านาย";
 }else if($arrJson['events'][0]['message']['text'] == "ID ของเรา"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-  $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "ID คุณคือ ".$arrJson['events'][0]['source']['userId'];
 }
 
@@ -39,7 +31,6 @@ if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
 else{
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-  $arrPostData['messages'][0]['type'] = "text";
   $arrPostData['messages'][0]['text'] = "ยังไม่สามารถเรียนรู้คำนี้";
 }
 
