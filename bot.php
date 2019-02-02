@@ -10,6 +10,12 @@ $strUrl = "https://api.line.me/v2/bot/message/reply";
 $arrHeader = array();
 $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
+$TEACH_SIGN = '==';
+$text = $this->textMessage->getText();
+$text = trim($text);
+# Remove ZWSP
+$text = str_replace("\xE2\x80\x8B", "", $text);
+$replyToken = $this->textMessage->getReplyToken();
 
 if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData = array();
