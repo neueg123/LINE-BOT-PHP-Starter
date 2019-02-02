@@ -15,9 +15,7 @@ $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
 if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
-  $arrPostData['messages'][0]['text'] = "สวัสดีครับเจ้านาย";
   $arrPostData['messages'][0]['text'] = "มีอะไรให้รับใช้ครับ";
-  $arrPostData['messages'][0]['text'] = "ยินดีต้อนรับครับ";
 }else if($arrJson['events'][0]['message']['text'] == "ชื่ออะไร"){
   $arrPostData = array();
   $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
